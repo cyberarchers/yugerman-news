@@ -1,0 +1,59 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Редактирование категории</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Редактирование категории</h1>
+
+	    				<hr>
+
+	    				{% if found %}
+	    					<form id="categoriesEditForm">
+	    						<label class="label has-text-weight-normal">
+									Название категории
+									<strong class="has-text-danger">*</strong>
+								</label>
+
+	    						<div class="field">
+									<div class="control">
+										<input id="categoriesEditName" name="name" class="input is-radiusless" type="text" value="{{ category[0].name }}" placeholder="Введите название категории" autocomplete="off">
+									</div>
+								</div>
+								
+								<hr>
+
+	    						<input name="categoryID" value="{{ category[0].cat_id }}" type="hidden">
+
+	    						<button id="categoriesEditButton" class="button is-link w50">Изменить</button>
+	    					</form>
+	    				{% else %}
+	    					Категория с таким ID не найдена!
+	    				{% endif %}
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxCategories.js"></script>
+{% endblock %}

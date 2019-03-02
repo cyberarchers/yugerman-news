@@ -1,0 +1,34 @@
+{% extends 'layouts/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+{% endblock %}
+
+{% block body %}
+	
+	<!-- Верхнее меню -->
+	{% include 'templates/partials/menu.html' %}
+	
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<!-- Блок контента -->
+			<div class="columns">
+				<!-- Новости -->
+				<div id="articles" class="column">
+					<div class="box blue-shadow is-radiusless">
+						<div class="title is-4">
+							Контакты
+						</div>
+						<p>
+							Статическая страница
+						</p>
+					</div>	
+				</div>
+			</div>
+	    </div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/js/ajax.js" defer></script>
+{% endblock %}

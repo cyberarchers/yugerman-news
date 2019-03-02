@@ -1,0 +1,94 @@
+{% extends 'layouts/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+{% endblock %}
+
+{% block body %}
+
+	<!-- Верхнее меню -->
+	{% include 'templates/partials/menu.html' %}
+
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<!-- Блок контента -->
+			<div class="columns">
+				<!-- Новости -->
+				<div id="articles" class="column">
+					<div class="box blue-shadow is-radiusless" style="word-break: break-all;">
+						<div class="title is-4">
+							Предложить новость
+						</div>
+
+						<hr>
+
+						<p>
+							<form id="addSuggestedForm">
+								<label class="label has-text-weight-normal">
+									Контактный email
+									<strong class="has-text-info">* (не обязательно)</strong>
+								</label>
+
+		    					<div class="field">
+									<div class="control">
+										<input name="contactEmail" id="addSuggestedContactEmail" class="input is-radiusless" type="text" placeholder="Введите Ваш email" autocomplete="off">
+									</div>
+								</div>
+
+								<hr>
+
+								<label class="label has-text-weight-normal">
+									Контактный номер
+									<strong class="has-text-info">* (не обязательно)</strong>
+								</label>
+
+		    					<div class="field">
+									<div class="control">
+										<input name="contactPhone" id="addSuggestedContactPhone" class="input is-radiusless" type="text" placeholder="Введите Ваш номер телефона" autocomplete="off">
+									</div>
+								</div>
+
+								<hr>
+
+								<label class="label has-text-weight-normal">
+									Текст новости
+									<strong class="has-text-danger">* (обязательно)</strong>
+								</label>
+								<div class="field">
+									<div class="control">
+										<textarea id="addSuggestedContent" name="content" class="textarea is-radiusless" rows="10"></textarea>
+									</div>
+
+									<p class="help is-danger">Минимум 100 символов, максимум 2000.</p>
+								</div>
+
+								<hr>
+
+								<div class="field">
+									<div class="control">
+										<button id="addSuggestedButton" class="button is-link w25" style="min-width: 200px;">
+											Отправить
+										</button>
+									</div>
+								</div>
+							</form>
+						</p>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/js/ajax.js"></script>
+	<script src="https://cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+	<script>
+	    CKEDITOR.replace( 'addSuggestedContent' , {
+	        language: 'ru'
+	    });
+
+		$("#addSuggestedLink").attr("href", "/");
+		$("#addSuggestedLink").text("Вернуться к новостям");
+	</script>
+{% endblock %}

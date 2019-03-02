@@ -1,0 +1,59 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Добавить регион</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Добавить регион</h1>
+
+	    				<hr>
+
+	    				<form id="regionsAddForm">
+	    					<label class="label has-text-weight-normal">
+								Название региона
+								<strong class="has-text-danger">*</strong>
+							</label>
+							
+	    					<div class="field">
+								<div class="control">
+									<input name="name" id="regionsAddName" class="input is-radiusless" type="text" placeholder="Введите название региона" autocomplete="off">
+								</div>
+							</div>
+
+							<hr>
+							
+							<div class="field">
+								<div class="control">
+									<button id="regionsAddButton" class="button is-link w50">
+										Добавить
+									</button>
+								</div>
+							</div>
+	    				</form>
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxRegions.js"></script>
+{% endblock %}

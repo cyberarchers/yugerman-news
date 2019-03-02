@@ -1,0 +1,52 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Профиль</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Профиль</h1>
+
+	    				<hr>
+	    				
+	    				<p>
+	    					<strong>Логин:</strong> {{ user.login }}
+	    				</p>
+
+	    				<hr>
+
+	    				<p>
+	    					<strong>Роль:</strong>
+	    					{% if user.role == 'administrator' %}
+    							<span class="has-text-danger">Администратор</span>
+    						{% elseif user.role == 'moderator' %}
+    							<span class="has-text-info">Модератор</span>
+    						{% else %}
+    							Неизвестный тип
+    						{% endif %}
+	    				</p>
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+{% endblock %}

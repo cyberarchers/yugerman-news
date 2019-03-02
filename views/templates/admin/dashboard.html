@@ -1,0 +1,76 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Дашборд</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Дашборд</h1>
+	    				
+	    				<hr>
+
+	    				<p>
+	    					<strong>Процессор:</strong>
+	    				</p>
+	    				<p>
+	    					Загрузка: <strong class="has-text-info">{{ serverInfo.currentLoad.cpu }}%</strong>.
+	    				</p>
+
+	    				<hr>
+
+	    				<p>
+	    					<strong>Память:</strong>
+	    				</p>
+	    				<p>
+	    					Всего: <strong class="has-text-danger">{{ serverInfo.memory.total }} мб</strong>, 
+	    					использовано: <strong class="has-text-info">{{ serverInfo.memory.total - serverInfo.memory.free }} мб</strong>, 
+	    					свободно: <strong class="has-text-success">{{ serverInfo.memory.free }} мб</strong>.
+	    				</p>
+
+	    				<hr>
+
+	    				<p>
+	    					<strong>Диск:</strong>
+	    				</p>
+	    				<p>
+	    					Всего: <strong class="has-text-danger">{{ serverInfo.diskSpace.total }} гб</strong>, 
+	    					использовано: <strong class="has-text-info">{{ serverInfo.diskSpace.total - serverInfo.diskSpace.free }} гб</strong>, 
+	    					свободно: <strong class="has-text-success">{{ serverInfo.diskSpace.free }} гб</strong>.
+	    				</p>
+
+						<hr>
+	    				
+	    				<p>
+	    					<strong>Платформа:</strong> {{ serverInfo.os.platform }} {{ serverInfo.os.arch }}.
+	    				</p>
+
+	    				<hr>
+
+	    				<p>
+	    					<strong>Аптайм сервера:</strong> {{ serverInfo.uptime / 3600 b-xor 0 }} часов.
+	    				</p>
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	{% block title %}
+		<title>{{ adminPanelTitle }}</title>
+	{% endblock %}
+
+	<!-- csrf -->
+	<meta name="_csrf" content="{{ csrfToken }}">
+
+	<!-- css -->
+	{% block css %}
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    	<link rel="stylesheet" type="text/css" href="/css/bulma.css">
+    	<link rel="stylesheet" type="text/css" href="/css/toastr.min.css">
+    	<link rel="stylesheet" type="text/css" href="/admin/css/main.css">
+	{% endblock %}
+	
+	<!-- css extra -->
+	{% block css_extra %}
+	{% endblock %}
+</head>
+<body>
+	<!-- body -->
+	{% block body %}
+	{% endblock %}
+	
+	<!-- js -->
+	{% block js %}
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/toastr.min.js"></script>
+		<script src="/admin/js/jquery.cookie.js"></script>
+		<script src="/admin/js/main.js"></script>
+	{% endblock %}
+
+	<!-- js extra-->
+	{% block js_extra %}
+	{% endblock %}
+</body>
+</html>

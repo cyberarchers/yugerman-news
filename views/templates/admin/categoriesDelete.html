@@ -1,0 +1,50 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Удалить категорию</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Удаление категории</h1>
+
+	    				<hr>
+
+	    				{% if found %}
+	    					<p>Удалить категорию - <strong>{{ category[0].name }}</strong>?</p>
+
+	    					<hr>
+
+	    					<form id="categoriesDeleteForm">
+	    						<input name="categoryID" value="{{ category[0].cat_id }}" type="hidden">
+
+	    						<button id="categoriesDeleteButton" class="button is-danger w50">Удалить</button>
+	    					</form>
+	    				{% else %}
+	    					Регион с таким ID не найден!
+	    				{% endif %}
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxCategories.js"></script>
+{% endblock %}

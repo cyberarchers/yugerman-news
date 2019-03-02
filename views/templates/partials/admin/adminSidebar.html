@@ -1,0 +1,139 @@
+<div class="menu">
+    <p class="menu-label">
+        Основное
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a href="/admin-panel/dashboard/">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+
+                Дашборд
+            </a>
+        </li>
+        <li>
+            <a href="/admin-panel/profile/">
+                <i class="fa fa-address-card-o" aria-hidden="true"></i>
+
+                Профиль
+            </a>
+        </li>
+    </ul>
+    <p class="menu-label">
+        Управление
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a href="/admin-panel/news/" class="is-active" style="background: #6089d5;">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+
+                Новости
+            </a>
+            <ul>
+                <li>
+                    <a href="/admin-panel/news/add/">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+
+                        Добавить
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin-panel/suggested-news/">
+                        <i class="fa fa-low-vision" aria-hidden="true"></i>
+
+                        Предложенные
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% if userRole == 'administrator' %}
+        <li>
+            <a href="/admin-panel/categories/" class="is-active" style="background: #6089d5;">
+                <i class="fa fa-tags" aria-hidden="true"></i>
+
+                Категории
+            </a>
+            <ul>
+                <li>
+                    <a href="/admin-panel/categories/add/">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+
+                        Добавить
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/admin-panel/regions/" class="is-active" style="background: #6089d5;">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+
+                Регионы
+            </a>
+            <ul>
+                <li>
+                    <a href="/admin-panel/regions/add/">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+
+                        Добавить
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="is-active" href="/admin-panel/users/" style="background: #80c595;">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+
+                Пользователи
+            </a>
+            <ul>
+                <li>
+                    <a href="/admin-panel/users/add/">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+
+                        Добавить
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+    </ul> 
+    <p class="menu-label">
+        Информативное
+    </p>
+    <ul class="menu-list">
+    	<li>
+            <a class="is-active" style="background: #dd895b;">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+                Статистика
+            </a>
+            <ul>
+                <li>
+                    <a href="/admin-panel/statistics/news/">
+                        <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                        
+                        Новостей
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin-panel/statistics/visits/">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+
+                        Посещений
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p class="menu-label">
+        Остальное
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a id="logoutLink">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+
+                Выход
+            </a>
+        </li>
+    </ul>
+</div>

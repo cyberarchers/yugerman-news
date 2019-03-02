@@ -1,0 +1,64 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block body %}
+	<section class="hero is-light is-fullheight">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<h1 class="title is-2">{{ adminPanelTitle }}</h1>
+
+				<div class="box is-radiusless panel w75" style="display: inline-block;">
+				    <div class="panel-block" style="padding: 30px 20px;">
+				        <form id="authForm" class="control">
+				        	<label class="label has-text-weight-normal">
+								Логин
+								<strong class="has-text-danger">*</strong>
+							</label>
+
+				            <div class="field has-addons">
+								<div class="control">
+									<a class="button">
+										<i class="fa fa-user"></i>
+									</a>
+								</div>
+
+								<div class="control is-expanded">
+									<input class="input is-radiusless" type="text" placeholder="Введите логин">
+								</div>
+							</div>
+
+							<label class="label has-text-weight-normal">
+								Пароль
+								<strong class="has-text-danger">*</strong>
+							</label>
+
+							<div class="field  has-addons">
+								<div class="control">
+									<a class="button">
+										<i class="fa fa-lock"></i>
+									</a>
+								</div>
+
+								<div class="control is-expanded">
+									<input class="input is-radiusless" type="password" placeholder="Введите пароль">
+								</div>
+							</div>
+				        </form>
+				    </div>
+				    <div class="panel-block" style="padding: 30px 10px;">
+				    	<div class="field w100 has-text-centered">
+							<button id="authButton" class="button is-link w50">Войти</button>
+						</div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+{% endblock %}

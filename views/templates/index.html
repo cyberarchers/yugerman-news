@@ -1,0 +1,181 @@
+{% extends 'layouts/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+	<link rel="stylesheet" type="text/css" href="/css/swiper.min.css">
+{% endblock %}
+
+{% block body %}
+	<!-- Верхнее меню -->
+	{% include 'templates/partials/menu.html' %}
+
+	<section class="section" style="background: #f9f9f9;">
+        <div class="container is-fluid">
+			{% if urgentNews.length > 0 %}
+	            <div class="columns">
+	                <div class="column is-12">
+	                    <div class="title is-4">
+	    			        Срочные новости
+	    			    </div>
+
+						<div id="top-urgent" class="swiper-container">
+						    <div class="swiper-wrapper">
+								{% for article in urgentNews %}
+							        <div class="swiper-slide" onclick="articleUrl('/article/{{ article.id }}')">
+										<div class="urgent-title">
+											<a href="/article/{{ article.id }}">{{ article.title }}</a>
+										</div>
+									</div>
+								{% endfor %}
+						    </div>
+
+							<!-- Add Pagination -->
+    						<div class="swiper-pagination"></div>
+						</div>
+	                </div>
+	            </div>
+			{% endif %}
+
+			<div class="columns">
+				<div class="column">
+					<div class="notification" style="background: #ceecdc;">
+						Вы можете отфильтровать новости по регионам и категориям. Мы покажем только интересующую Вас информацию.
+						<br><br>
+						<a class="button is-dark toggle-filter">Показать фильтр</a>
+					</div>
+				</div>
+			</div>
+
+        	<!-- Блок контента -->
+    		<div class="columns">
+    			<!-- Новости -->
+    			<div id="articles" class="column">
+    			    <div class="title is-4">
+    			        Последние новости
+    			    </div>
+
+    				{% if allNews.length > 0 %}
+    					{% for row in allNews %}
+							<div class="columns">
+								{% for article in row %}
+									<div class="column is-4">
+										<div class="blue-shadow" style="position: relative !important;" onclick="articleUrl('/article/{{ article.id }}')">
+											<figure class="image">
+												<a href="/article/{{ article.id }}"><img src="{{ article.preview_image }}"></a>
+											</figure>
+
+
+											<div class="news-date">
+												{{ article.date | date("H:i:s | d.m.Y")}}
+											</div>
+											<div class="news-title">
+												<a href="/article/{{ article.id }}">{{ article.title }}</a>
+											</div>
+											<div class="news-short-content">
+												{{ article.short_content }}
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+    					{% endfor %}
+    				{% else %}
+						<div class="columns">
+							<div class="column">
+		        				<div class="box blue-shadow is-radiusless">
+	        						    Новости не найдены!
+	        					</div>
+							</div>
+						</div>
+    				{% endif %}
+    			</div>
+    		</div>
+        </div>
+    </section>
+
+	<!-- Фильтр -->
+	<div id="filter" class="box blue-shadow is-radiusless" style="word-break: break-all;">
+		<div class="title is-4">
+			Фильтр
+		</div>
+
+		{% if allCategories.length > 0 and allRegions.length > 0 %}
+			{% for category in allCategories %}
+				<div id="filterCategories" class="field">
+					<label class="control-cb control-checkbox custom-font">
+						{{ category.name }}
+							<input type="checkbox" value="{{ category.id }}">
+						<div class="control_indicator"></div>
+					</label>
+				</div>
+			{% endfor %}
+
+			<hr>
+
+			{% for region in allRegions %}
+				<div id="filterRegions" class="field">
+					<label class="control-cb control-checkbox custom-font">
+						{{ region.name }}
+							<input type="checkbox" value="{{ region.id }}">
+						<div class="control_indicator"></div>
+					</label>
+				</div>
+			{% endfor %}
+
+			<!-- Отфильтровать -->
+			<button id="applyFilter" class="custom-font button is-success is-fullwidth">Отфильтровать</button>
+
+			<hr>
+
+			<button class="custom-font button is-dark toggle-filter is-fullwidth">Скрыть фильтр</button>
+		{% else %}
+			Фильтр недоступен.
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/js/ajax.js"></script>
+	<script src="/js/scotchPanels.min.js"></script>
+	<script src="/js/swiper.min.js"></script>
+	<script>
+		var filterWidth = null;
+		var windowWidth = $( window ).width();
+
+		if(windowWidth < 400) {
+			filterWidth = '100%';
+		} else {
+			filterWidth = '400px';
+		}
+
+		$('#filter').scotchPanel({
+	        containerSelector: 'body',
+	        direction: 'left',
+	        duration: 300,
+	        transition: 'ease',
+	        clickSelector: '.toggle-filter',
+	        distanceX: filterWidth,
+	        enableEscapeKey: true,
+			beforePanelOpen: function() {
+				$('html, body').animate({scrollTop: 0},500);
+			},
+			afterPanelClose: function() {
+				$('html, body').animate({scrollTop: 0},500);
+			}
+	    });
+
+	    var swiper = new Swiper('#top-urgent', {
+			direction: 'vertical',
+			loop: true,
+
+			autoplay: {
+			    delay: 3000,
+			},
+
+			pagination: {
+		        el: '.swiper-pagination',
+		        clickable: true,
+		    },
+	    });
+	</script>
+{% endblock %}

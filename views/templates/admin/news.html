@@ -1,0 +1,55 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Новости</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Новости</h1>
+
+	    				<hr>
+	    				{% if news.length > 0 %}
+		    				{% for article in news %}
+		    					<p>
+		    						<strong>#{{ loop.index }} {{ article.title }}</strong>
+
+		    						/ 
+
+		    						<a href="/admin-panel/news/edit/{{ article.news_id }}">Редактировать</a> 
+
+		    						/ 
+
+		    						<a href="/admin-panel/news/delete/{{ article.news_id }}">Удалить</a>
+		    					</p>
+
+		    					<hr>
+		    				{% endfor %}
+		    			{% else %}
+		    				Новости не найдены!
+		    			{% endif%}
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxNews.js"></script>
+{% endblock %}

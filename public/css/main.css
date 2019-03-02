@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
+
+body {
+	font-family: 'Roboto Slab', serif !important;
+	font-size: 16px !important;
+}
+
+.custom-font {
+	font-family: 'Roboto Slab', serif !important;
+}
+
+.w25 {
+	width: 25%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w75 {
+	width: 75%;
+}
+
+.w100 {
+	width: 100%;
+}
+
+#toast-container > div:hover {
+	box-shadow: none;
+}
+
+/** checkbox **/
+.control-cb {
+    font-family: arial;
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    padding-top: 2px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.control-cb input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.control_indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #e6e6e6;
+    border: 0px solid #000000;
+}
+.control-radio .control_indicator {
+    border-radius: undefined%;
+}
+
+.control-cb:hover input ~ .control_indicator,
+.control-cb input:focus ~ .control_indicator {
+    background: #cccccc;
+}
+
+.control-cb input:checked ~ .control_indicator {
+    background: #23D176;
+}
+.control-cb:hover input:not([disabled]):checked ~ .control_indicator,
+.control-cb input:checked:focus ~ .control_indicator {
+    background: #0e6647d;
+}
+.control-cb input:disabled ~ .control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+.control-cb input:checked ~ .control_indicator:after {
+    display: block;
+}
+.control-checkbox .control_indicator:after {
+    left: 8px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.control-checkbox input:disabled ~ .control_indicator:after {
+    border-color: #7b7b7b;
+}
+
+/** SWIPER **/
+.swiper-container {
+    width: 100%;
+}
+.swiper-slide {
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}

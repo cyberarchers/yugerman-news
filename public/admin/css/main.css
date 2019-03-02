@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
+
+body {
+	font-family: 'Roboto Slab', serif !important;
+	font-size: 16px !important;
+}
+
+.custom-font {
+	font-family: 'Roboto Slab', serif !important;
+}
+
+.w25 {
+	width: 25%;
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w75 {
+	width: 75%;
+}
+
+.w100 {
+	width: 100%;
+}
+
+#toast-container > div:hover {
+	box-shadow: none;
+}

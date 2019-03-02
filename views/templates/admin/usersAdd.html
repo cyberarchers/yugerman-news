@@ -1,0 +1,90 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Добавить пользователя</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless">
+	    				<h1 class="title is-4">Добавить пользователя</h1>
+
+	    				<hr>
+
+	    				<form id="usersAddForm">
+	    					<label class="label has-text-weight-normal">
+								Роль пользователя
+								<strong class="has-text-danger">*</strong>
+							</label>
+							
+	    					<div class="field">
+								<div class="control">
+									<div class="select">
+										<select id="usersAddRole" name="role" class="is-radiusless">
+											<option value="administrator" selected>Администратор</option>
+											<option value="moderator">Модератор</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+	    					<label class="label has-text-weight-normal">
+								Логин пользователя
+								<strong class="has-text-danger">*</strong>
+							</label>
+							
+	    					<div class="field">
+								<div class="control">
+									<input name="login" id="usersAddLogin" class="input is-radiusless" type="text" placeholder="Введите логин пользователя" autocomplete="off">
+								</div>
+							</div>
+
+							<hr>
+
+							<label class="label has-text-weight-normal">
+								Пароль пользователя
+								<strong class="has-text-danger">*</strong>
+							</label>
+							
+	    					<div class="field">
+								<div class="control">
+									<input name="password" id="usersAddPassword" class="input is-radiusless" type="password" placeholder="Введите пароль пользователя" autocomplete="off">
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="field">
+								<div class="control">
+									<button id="usersAddButton" class="button is-link w50">
+										Добавить
+									</button>
+								</div>
+							</div>
+	    				</form>
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxUsers.js"></script>
+{% endblock %}

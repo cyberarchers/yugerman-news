@@ -1,0 +1,222 @@
+{% extends 'layouts/admin/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ adminPanelTitle }} / Редактировать новость</title>
+{% endblock %}
+
+{% block body %}
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<div class="columns is-variable is-3">
+	    		<div class="column is-two-fifths">
+	    			<div class="box is-radiusless">
+	    				{% include 'templates/partials/admin/adminSidebar.html' %}
+	    			</div>
+	    		</div>
+
+	    		<div class="column">
+	    			<div class="box is-radiusless" style="word-break: break-all;">
+	    				<!-- FILE UPLOAD -->
+    					<div class="file is-centered is-dark has-name" style="margin-bottom: 20px;">
+    						<label class="file-label">
+    							<form enctype="multipart/form-data" id="image-upload-form">
+    								<input class="file-input" type="file" name="image" accept="image/jpg, image/jpeg, image/png" multiple>
+    							</form>
+
+    							<span class="file-cta">
+    								<span class="file-label" id="image-upload-btn">
+    									Загрузить изображения
+    								</span>
+    							</span>
+    							<span class="file-name" style="height: auto; text-align: center;">
+    								jpeg, jpg, png, bmp, до 10 мб
+    							</span>
+    						</label>
+    					</div>
+
+    					<div id="image-upload-list">
+    						
+    					</div>
+						
+						<hr>
+
+	    				<h1 class="title is-4">Редактирование новости</h1>
+
+	    				<hr>
+	    				{% if found %}
+	    					{% if categories.length > 0 and regions.length > 0 %}
+			    				<form id="newsEditForm">
+			    					<label class="label has-text-weight-normal">
+										Заголовок
+										<strong class="has-text-danger">*</strong>
+									</label>
+
+			    					<div class="field">
+										<div class="control">
+											<input name="title" id="newsEditTitle" class="input is-radiusless" type="text" placeholder="Введите заголовок новости" value="{{ article[0].title }}" autocomplete="off">
+										</div>
+									</div>
+
+									<hr>
+
+									<label class="label has-text-weight-normal">
+										Срочная новость?
+										<strong class="has-text-danger">*</strong>
+									</label>
+									
+			    					<div class="field">
+										<div class="control">
+											<div class="select">
+												<select id="newsEditUrgent" name="urgent" class="is-radiusless">
+													{% if article[0].urgent == 1 %}
+														<option value="1" selected>Да</option>
+														<option value="0">Нет</option>
+													{% else %}
+														<option value="0" selected>Нет</option>
+														<option value="1">Да</option>
+													{% endif %}
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<hr>
+
+									<label class="label has-text-weight-normal">
+										Краткое описание
+										<strong class="has-text-info">*</strong>
+									</label>
+									<div class="field">
+										<div class="control">
+											<textarea id="shortContent" name="shortContent" class="textarea is-radiusless" placeholder="Текст статьи" rows="10">
+												{{ article[0].short_content }}
+											</textarea>
+										</div>
+									</div>
+
+									<hr>
+
+									<label class="label has-text-weight-normal">
+										Полное описание (не надо прибавлять краткое)
+										<strong class="has-text-info">*</strong>
+									</label>
+									<div class="field">
+										<div class="control">
+											<textarea id="content" name="content" class="textarea is-radiusless" placeholder="Текст статьи" rows="10">
+												{{ article[0].content }}
+											</textarea>
+										</div>
+									</div>
+
+									<hr>
+
+									<label class="label has-text-weight-normal">
+										Ссылка на файл превью
+										<strong class="has-text-danger">*</strong>
+									</label>
+
+			    					<div class="field">
+										<div class="control">
+											<input name="previewImage" id="newsEditPreviewImage" class="input is-radiusless" type="text" placeholder="Введите ссылку на файл изображения" value="{{ article[0].preview_image }}" autocomplete="off">
+										</div>
+
+										<p class="help is-danger">Поддерживаемые форматы: png, jpg, jpeg, png.</p>
+									</div>
+
+									<input name="id" value="{{ article[0].id }}" type="hidden"> 
+									<input name="newsID" value="{{ article[0].news_id }}" type="hidden">
+
+									<hr>
+
+									<div class="field">
+										<div class="control">
+											<div class="menu">
+												<ul class="menu-list">
+													<li>
+														<a>Категории <strong class="has-text-danger">*</strong></a>
+														<ul>
+															{% for category in categories %}
+																<li>
+																	<label class="checkbox">
+																		{% if category.id in currentCategories %}
+																			<input type="checkbox" name="categories[]" value="{{ category.id }}" checked>
+																		{% else %}
+																			<input type="checkbox" name="categories[]" value="{{ category.id }}">
+																		{% endif %}
+
+																		{{ category.name }}
+																	</label>
+																</li>
+															{% endfor %}
+														</ul>
+
+														<a>Регионы <strong class="has-text-danger">*</strong></a>
+														<ul>
+															{% for region in regions %}
+																<li>
+																	<label class="checkbox">
+																		{% if region.id in currentRegions %}
+																			<input type="checkbox" name="regions[]" value="{{ region.id }}" checked>
+																		{% else %}
+																			<input type="checkbox" name="regions[]" value="{{ region.id }}">
+																		{% endif %}
+
+																		{{ region.name }}
+																	</label>
+																</li>
+															{% endfor %}
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<hr>
+
+									<div class="field">
+										<div class="control">
+											<button id="newsEditButton" onclick="updateCKEDITOR()" class="button is-link w50">
+												Изменить
+											</button>
+										</div>
+									</div>
+			    				</form>
+		    				{% else %}
+		    					Добавьте хотябы одну категорию и один регион.
+		    				{% endif %}
+	    				{% else %}
+	    					Новость не найдена!
+	    				{% endif %}
+	    			</div>
+		    	</div>
+	    	</div>
+    	</div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/admin/js/ajax.js"></script>
+	<script src="/admin/js/ajaxNews.js"></script>
+	<script src="/admin/js/ajaxNewsImageUpload.js"></script>
+	<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+	<script>
+	    CKEDITOR.replace('shortContent', {
+	        language: 'ru'
+	    });
+	    
+        CKEDITOR.replace('content', {
+	        language: 'ru'
+	    });
+	    
+	    function updateCKEDITOR() {
+	        for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+	    }
+	</script>
+{% endblock %}

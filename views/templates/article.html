@@ -1,0 +1,68 @@
+{% extends 'layouts/layout.html' %}
+
+{% block css_extra %}
+	<link rel="stylesheet" type="text/css" href="/css/home.css">
+{% endblock %}
+
+{% block body %}
+
+	<!-- Верхнее меню -->
+	{% include 'templates/partials/menu.html' %}
+
+	<section class="section">
+	    <div class="container is-fluid">
+	    	<!-- Блок контента -->
+			<div class="columns">
+				<!-- Новость -->
+				<div id="article" class="column is-two-thirds">
+					{% if article.length > 0 %}
+						<div class="box blue-shadow is-radiusless">
+							<div class="title is-4">
+							    {% block title %}
+    							{{ article[0].title }}
+    							{% endblock %}
+							</div>
+
+							<p>
+								<span class="button is-info is-radiusless">{{ article.date | date("H:i:s | d.m.Y")}}</span>
+							</p>
+
+							<hr>
+
+							<p>
+								{{ article[0].content }}
+							</p>
+						</div>
+					{% else %}
+						<div class="box blue-shadow is-radiusless">
+							Новость не найдена!
+						</div>
+					{% endif %}
+
+					<div class="box blue-shadow is-radiusless" id="mc-container"></div>
+                    <script type="text/javascript">
+                    cackle_widget = window.cackle_widget || [];
+                    cackle_widget.push({widget: 'Comment', id: 57384});
+                    (function() {
+                        var mc = document.createElement('script');
+                        mc.type = 'text/javascript';
+                        mc.async = true;
+                        mc.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cackle.me/widget.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+                    })();
+                    </script>
+				</div>
+
+				<div class="column">
+					<div class="box blue-shadow is-radiusless">
+						Реклама...
+					</div>
+				</div>
+			</div>
+	    </div>
+	</section>
+{% endblock %}
+
+{% block js_extra %}
+	<script src="/js/ajax.js" defer></script>
+{% endblock %}
